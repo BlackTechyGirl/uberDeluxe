@@ -1,16 +1,16 @@
 package africa.semicolon.uber_deluxe.data.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,12 +20,14 @@ public class Driver {
     private Address address;
     private Gender gender;
     private String licenseId;
+    private String licenseImage;
     private int age;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Referee referee;
-    @OneToOne
-    private BankInformation accoutDetails;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private BankInformation bankInformation;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private AppUser userDetails;
 
 }

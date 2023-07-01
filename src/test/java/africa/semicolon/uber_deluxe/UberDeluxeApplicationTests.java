@@ -19,15 +19,24 @@ class UberDeluxeApplicationTests {
 
 	@Test
 	void testDatabaseConnection(){
-		DataSource dataSource =
-				new DriverManagerDataSource("jdbc:mysql://localhost", "Martha", "DrDanladi@@2020");
-		try{
-			Connection connection = dataSource.getConnection();
+		DriverManagerDataSource dataSource =
+				new DriverManagerDataSource("jdbc:mysql://127.0.0.1:3306/uberdeluxe");
+		try {
+			Connection connection = dataSource.getConnection("Martha", "DrDanladi@@2020");
 			System.out.println(connection);
 			assertThat(connection).isNotNull();
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+//		DataSource dataSource =
+//				new DriverManagerDataSource("jdbc:mysql://localhost", "Martha", "DrDanladi@@2020");
+//		try{"jdbc:postgres://127.0.0.1:5432"
+//			Connection connection = dataSource.getConnection();
+//			System.out.println(connection);
+//			assertThat(connection).isNotNull();
+//		}catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
 	}
 
 }

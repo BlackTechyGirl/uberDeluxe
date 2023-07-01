@@ -25,6 +25,7 @@ public class Referee {
     private int age;
     @OneToOne
     private Address address;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String phoneNUmber;
 }
